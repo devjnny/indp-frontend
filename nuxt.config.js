@@ -22,7 +22,10 @@ export default {
       },
       { name: "author", content: "VERBY" },
       { name: "format-detection", content: "telephone=no" },
-      { name: "naver-site-verification", content: "ea05ce8eec4b6f1048f7ba093e795e4ce35077a0"}
+      {
+        name: "naver-site-verification",
+        content: "ea05ce8eec4b6f1048f7ba093e795e4ce35077a0",
+      },
     ],
     link: [
       {
@@ -52,7 +55,9 @@ export default {
       changeOrigin: true,
     },
   },
-
+  publicRuntimeConfig: {
+    apiUrl: process.env.NUXT_PUBLIC_API_URL,
+  },
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
     theme: {

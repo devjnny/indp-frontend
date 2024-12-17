@@ -139,7 +139,7 @@ footer {
         transition: transform 0.3s ease-in-out; /* 부드러운 애니메이션 */
         padding: 68px 28px 20px;
         width: calc(100vw - 79px);
-        height: 100vh;
+        height: 100dvh;
         border: 1px solid #fff;
         background-color: #222224;
         &.open {
@@ -150,6 +150,9 @@ footer {
         li {
           padding: 12px 0;
           a {
+            display: block;
+            width: 100%;
+            height: 100%;
             font-size: 1.125rem;
             font-weight: 700;
             line-height: 1.625rem;
@@ -177,17 +180,17 @@ footer {
       padding: 0;
     }
     .content {
-      padding: 80px 20px 336px;
+      padding: 0;
     }
   }
 
   footer {
     width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    // position: fixed;
+    // bottom: 0;
+    // left: 0;
     padding: 40px 20px;
-    z-index: 9;
+    // z-index: 9;
     .logo {
       width: 103px;
       height: 16px;

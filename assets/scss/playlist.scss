@@ -246,6 +246,7 @@ $content-font: "NanumSquareNeo", sans-serif;
 
 @include mobile-tablet {
   .content {
+    padding: 80px 20px 60px !important;
     h3 {
       font-size: 1.625rem;
       font-weight: 700;

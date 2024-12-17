@@ -83,7 +83,7 @@ $content-font: "NanumSquareNeo", sans-serif;
 
 @include mobile-tablet {
   .content {
-    // padding: 80px 20px 60px !important;
+    padding: 80px 20px 60px !important;
 
     &.contact {
       .contact__title {

@@ -15,7 +15,7 @@ html {
   // overflow-x: scroll !important;
   // max-width: 1920px;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   font-size: 16px;
 }
 
@@ -173,6 +173,12 @@ body {
 }
 
 @include mobile-tablet {
+  html,
+  body {
+    .v-application--wrap {
+      min-height: unset !important; /* min-height 제거 */
+    }
+  }
   .theme--light.v-label,
   .theme--dark.v-label {
     font-size: 1rem;

@@ -39,10 +39,7 @@ export default {
   css: ["@/assets/scss/global.scss"],
 
   components: true,
-  buildModules: [
-    "@nuxtjs/vuetify",
-    ["@nuxtjs/dotenv", { filename: `.env.${process.env.NODE_ENV}` }],
-  ],
+  buildModules: ["@nuxtjs/vuetify", "@nuxtjs/dotenv"],
 
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
   axios: {
@@ -56,7 +53,7 @@ export default {
     },
   },
   publicRuntimeConfig: {
-    apiUrl: process.env.NUXT_PUBLIC_API_URL,
+    apiUrl: process.env.API_URL || "https://api.verby.co.kr",
   },
   vuetify: {
     customVariables: ["~/assets/variables.scss"],

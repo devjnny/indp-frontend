@@ -1,5 +1,6 @@
-@import "./_mixin";
-$content-font: "NanumSquareNeo" sans-serif;
+@import "./breakpoint.scss";
+$content-font: "NanumSquareNeo", sans-serif;
+
 .content {
   display: flex;
   flex-direction: column;
@@ -31,113 +32,6 @@ $content-font: "NanumSquareNeo" sans-serif;
       gap: 35px;
       flex-wrap: wrap;
       margin-top: 55px;
-      .place {
-        position: relative;
-        width: 410px;
-        height: auto;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #fff;
-        img {
-          display: block;
-          width: 100%;
-          height: 300px;
-        }
-        &__tag {
-          position: absolute;
-          left: 20px;
-          top: 20px;
-          span {
-            display: inline-block;
-            width: 106px;
-            height: 40px;
-            border-radius: 20.5px;
-            background-color: rgba(255, 255, 255, 0.7);
-            font-family: $content-font;
-            font-size: 18px;
-            font-weight: 800;
-            line-height: 40px;
-            text-align: center;
-            + span {
-              margin-left: 6px;
-            }
-            &:nth-child(3n + 1) {
-              margin-left: 0;
-            }
-            &:nth-child(n + 4) {
-              margin-top: 10px;
-            }
-          }
-        }
-        &__info {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          height: calc(100% - 300px);
-          padding: 40px 35px;
-          font-family: $content-font;
-          color: #000;
-          &-text {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            &__name {
-              font-size: 26px;
-              font-weight: 800;
-            }
-            &__address {
-              margin-top: 16px;
-              font-size: 18px;
-              font-weight: 400;
-              overflow: hidden;
-              text-align: center;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
-            }
-          }
-          &-playlist {
-            width: 100%;
-            height: 134px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            margin-top: 26px;
-            &-genre {
-              font-size: 21px;
-              font-weight: 800;
-              line-height: 29px;
-              overflow: hidden;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
-              .text__blue {
-                font-weight: 900;
-              }
-              span {
-                display: inline-block;
-                position: relative;
-                + span {
-                  padding-left: 8px;
-                  &:before {
-                    content: ",";
-                    display: block;
-                    position: absolute;
-                    left: 0;
-                  }
-                }
-              }
-            }
-            button {
-              margin-top: 20px;
-            }
-          }
-        }
-      }
     }
   }
   .service__request {
@@ -157,7 +51,115 @@ $content-font: "NanumSquareNeo" sans-serif;
   }
 }
 
-.v-dialog {
+.place {
+  position: relative;
+  width: 410px;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  img {
+    display: block;
+    width: 100%;
+    height: 300px;
+  }
+  &__tag {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    span {
+      display: inline-block;
+      width: 106px;
+      height: 40px;
+      border-radius: 20.5px;
+      background-color: rgba(255, 255, 255, 0.7);
+      font-family: $content-font;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 40px;
+      text-align: center;
+      + span {
+        margin-left: 6px;
+      }
+      &:nth-child(3n + 1) {
+        margin-left: 0;
+      }
+      &:nth-child(n + 4) {
+        margin-top: 10px;
+      }
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: calc(100% - 300px);
+    padding: 40px 35px;
+    font-family: $content-font;
+    color: #000;
+    &-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &__name {
+        font-size: 26px;
+        font-weight: 800;
+      }
+      &__address {
+        margin-top: 16px;
+        font-size: 18px;
+        font-weight: 400;
+        overflow: hidden;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+    }
+    &-playlist {
+      width: 100%;
+      height: 134px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      margin-top: 26px;
+      &-genre {
+        font-size: 21px;
+        font-weight: 800;
+        line-height: 29px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        .text__blue {
+          font-weight: 900;
+        }
+        span {
+          display: inline-block;
+          position: relative;
+          + span {
+            padding-left: 8px;
+            &:before {
+              content: ",";
+              display: block;
+              position: absolute;
+              left: 0;
+            }
+          }
+        }
+      }
+      button {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.v-dialog.recommend-popup {
   .v-card {
     .v-card__title {
       font-family: $content-font;
@@ -213,7 +215,7 @@ $content-font: "NanumSquareNeo" sans-serif;
   }
 }
 
-@include desktopToLaptop {
+@include largeDesktopTodesktop {
   .content {
     .place-list__tab {
       .place-list {
@@ -235,6 +237,224 @@ $content-font: "NanumSquareNeo" sans-serif;
     }
     .service__request p {
       font-size: 38px;
+    }
+  }
+}
+
+@include mobile {
+  .content {
+    h3 {
+      font-size: 1.625rem;
+      font-weight: 700;
+      line-height: 2.25rem;
+      letter-spacing: -1px;
+      strong {
+        font-weight: 800;
+      }
+    }
+    .place-list__tab {
+      margin-top: 24px;
+
+      .place-list {
+        gap: 15px;
+        margin-top: 28px;
+      }
+    }
+  }
+  .place {
+    width: calc((100% - 15px) / 2);
+    height: auto;
+    border-radius: 12px;
+    img {
+      height: auto;
+    }
+    &__tag {
+      left: 12px;
+      top: 12px;
+      span {
+        min-width: 60px;
+        width: calc((100% - 4px) / 2);
+        height: 24px;
+        border-radius: 50px;
+        font-size: 0.688rem;
+        line-height: 1.25rem;
+        padding: 2px 0;
+        + span {
+          margin-left: 4px;
+        }
+        &:nth-child(2n + 1) {
+          margin-left: 0;
+        }
+        &:nth-child(n + 3) {
+          margin-top: 10px;
+        }
+      }
+    }
+    &__info {
+      padding: 12px 12px 16px;
+      &-text {
+        &__name {
+          font-size: 0.875rem;
+          line-height: 1.375rem;
+        }
+        &__address {
+          margin-top: 4px;
+          font-size: 0.75rem;
+          font-weight: 400;
+          line-height: 1.25rem;
+        }
+      }
+    }
+  }
+
+  .v-dialog.recommend-popup {
+    .v-card {
+      border-radius: 12px !important;
+      .v-card__title {
+        padding: 20px;
+        font-size: 1.125rem;
+        line-height: 1.625rem;
+        .v-btn {
+          width: 32px;
+          height: 32px;
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+      .v-card__text {
+        padding: 0 20px;
+        .v-form {
+          width: 100%;
+          text-align: left;
+          .label {
+            font-size: 0.875rem;
+            line-height: 1.375rem;
+            letter-spacing: -0.16px;
+            margin-bottom: 12px;
+          }
+          .v-input {
+            + .label {
+              margin-top: 28px;
+            }
+          }
+          .v-input--checkbox {
+            margin-top: 40px;
+          }
+          .clause {
+            font-size: 0.875rem;
+            line-height: 1.375rem;
+            letter-spacing: -0.16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 12px;
+            ul {
+              margin-top: 8px;
+              li {
+                + li {
+                  margin-top: 8px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .v-card__actions {
+        padding: 28px 20px 32px;
+        .error__text {
+          margin-bottom: 8px !important;
+        }
+      }
+    }
+  }
+
+  ::v-deep(.v-overlay) {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  ::v-deep(.v-dialog.store-detail-popup) {
+    position: absolute !important;
+    top: 80px !important;
+    left: 20px !important;
+    width: calc(100% - 40px);
+    margin: 0 !important;
+    border-radius: 12px !important;
+    background-color: #fff !important;
+    box-shadow: none !important;
+    .v-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    .store-detail-content {
+      width: 100% !important;
+      img {
+        width: 100% !important;
+        height: auto;
+      }
+      .place {
+        &__tag {
+          left: 16px;
+          top: 16px;
+          span {
+            min-width: 68px;
+            width: calc((100% - 4px) / 2);
+            height: 32px;
+            font-size: 0.75rem;
+            line-height: 1.25rem;
+            padding: 6px 0;
+            font-weight: 800;
+            background-color: rgba(255, 255, 255, 0.7);
+            + span {
+              margin-left: 4px;
+            }
+            &:nth-child(3n + 1) {
+              margin-left: 0;
+            }
+            &:nth-child(n + 4) {
+              margin-top: 10px;
+            }
+          }
+        }
+        &__info {
+          padding: 20px;
+          &-text {
+            &__name {
+              font-size: 1.125rem;
+              line-height: 1.625rem;
+            }
+            &__address {
+              margin-top: 8px;
+              font-size: 0.875rem;
+              line-height: 1.375rem;
+            }
+          }
+          &-playlist {
+            margin-top: 8px;
+            &-genre {
+              font-size: 0.875rem;
+              line-height: 1.375rem;
+              font-weight: 700;
+              span {
+                display: inline-block;
+                position: relative;
+                + span {
+                  padding-left: 8px;
+                  &:before {
+                    content: ",";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                  }
+                }
+              }
+            }
+            button {
+              margin-top: 16px;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
-@import "./_mixin";
-$content-font: "NanumSquareNeo" sans-serif;
+@import "./breakpoint.scss";
+$content-font: "NanumSquareNeo", sans-serif;
 .visual {
   display: flex;
   flex-direction: column;
@@ -177,7 +177,8 @@ $content-font: "NanumSquareNeo" sans-serif;
     }
   }
 }
-@include desktopToLaptop {
+
+@include largeDesktopTodesktop {
   .content {
     .content__logo {
       .content__logo-info {
@@ -194,6 +195,142 @@ $content-font: "NanumSquareNeo" sans-serif;
           width: calc((100% - 80px) / 2);
           .content__logo-type-box {
             width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .visual {
+    height: 472px;
+    padding: 80px 24px 60px !important;
+    .visual__text {
+      font-size: 1.625rem;
+      line-height: 2.375rem;
+      margin-top: 16px;
+      letter-spacing: -1px;
+      + p {
+        margin-top: 20px;
+      }
+    }
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      line-height: 1.5rem;
+      + p {
+        margin-top: 20px;
+      }
+    }
+  }
+  .content {
+    padding: 60px 20px !important;
+    .content__title {
+      span {
+        display: inline-block;
+        font-size: 1rem;
+        line-height: 1.219rem;
+        opacity: 0.8;
+        + span {
+          position: relative;
+          padding-left: 16px;
+          &:before {
+            left: 4px;
+            width: 1px;
+            height: 10px;
+          }
+        }
+      }
+    }
+    .content__logo {
+      margin-top: 20px;
+      .content__logo-img {
+        position: relative;
+        width: 100%;
+        height: 120px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        padding: 38px 62px 10px;
+        img {
+          width: calc(100% - 124px);
+          height: auto;
+          top: 38px;
+        }
+      }
+      .content__logo-info {
+        margin: 32px 0;
+        .content__logo-info-title {
+          font-size: 1rem;
+          line-height: 1.5rem;
+          letter-spacing: -0.16px;
+        }
+        .content__logo-info-text {
+          font-size: 1rem;
+          line-height: 1.5rem;
+          color: rgba(255, 255, 255, 0.8);
+          margin-top: 12px;
+        }
+        .content__logo-info-img {
+          margin-top: 32px;
+          .content__logo-info-img-box {
+            width: 101px;
+            height: 150px;
+            border-radius: 0;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+    .content__logo-style {
+      font-family: $content-font;
+      .content__logo-style-title {
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1.5rem;
+        letter-spacing: -0.16px;
+      }
+      .content__logo-style-text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-top: 12px;
+      }
+      .content__logo-style-list {
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 40px;
+        .content__logo-type {
+          width: calc((100% - 15px) / 2);
+          &:nth-child(n + 3) {
+            margin-top: 32px;
+          }
+          .content__logo-type-box {
+            width: 100%;
+            height: 72px;
+            border-radius: 4px;
+            padding: 27px 30px;
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+        }
+        .content__logo-type-info {
+          margin-top: 16px;
+          .content__logo-type-color {
+            font-size: 0.875rem;
+            line-height: 2.313rem;
+          }
+          .content__logo-type-style {
+            font-size: 0.75rem;
+            font-weight: 400;
+            line-height: 1.125rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 8px;
           }
         }
       }

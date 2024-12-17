@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="[arrow ? 'arrow' : '', disabled ? 'disabled' : '']"
+    :class="[arrow ? 'arrow' : '', disabled ? 'disabled' : '', type]"
     @click="$emit('doAction')"
   >
     <span>{{ text }}</span>
@@ -11,6 +11,10 @@
 export default {
   props: {
     text: {
+      type: String,
+      default: "",
+    },
+    type: {
       type: String,
       default: "",
     },
@@ -31,6 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/scss/breakpoint.scss";
 button {
   width: 340px;
   height: 60px;
@@ -66,6 +71,34 @@ button {
   }
   &.disabled {
     opacity: 0.4;
+  }
+  &.w-full {
+    width: 100% !important;
+  }
+}
+
+@include mobile {
+  button {
+    width: 200px;
+    height: 52px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    background-color: #2686d9;
+    span {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+    &.arrow {
+      width: auto;
+      span {
+        padding-right: 20px;
+        &:after {
+          width: 16px;
+          height: 16px;
+          background: url(/icons/icon_mo_arrow_right.png) no-repeat center/100%;
+        }
+      }
+    }
   }
 }
 </style>

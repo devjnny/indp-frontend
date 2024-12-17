@@ -1,9 +1,10 @@
 @import "./reset.scss";
 @import "./font.scss";
 @import "./layout.scss";
-@import "./_mixin.scss";
+@import "./breakpoint.scss";
+// @import "./_mixin.scss";
 
-$content-font: "NanumSquareNeo" sans-serif;
+$content-font: "NanumSquareNeo", sans-serif;
 
 .v-application {
   p {
@@ -13,13 +14,18 @@ $content-font: "NanumSquareNeo" sans-serif;
 
 html {
   overflow-x: scroll !important;
-  width: 1920px;
+  // max-width: 1920px;
+  width: 100vw;
+  height: 100vh;
+  font-size: 16px;
 }
 
 body {
   background-color: #000;
   font-family: "Montserrat", sans-serif;
   width: 100%;
+  height: 100%;
+  font-size: 16px;
 }
 //tab
 .v-tabs-bar {
@@ -37,7 +43,7 @@ body {
   }
   .v-tab {
     font-family: $content-font;
-    font-size: 40px !important;
+    font-size: 2.5rem !important;
     font-weight: 700 !important;
     line-height: 52px !important;
     color: rgba(255, 255, 255, 0.2) !important;
@@ -70,7 +76,7 @@ body {
 .theme--light.v-label,
 .theme--dark.v-label {
   font-family: $content-font;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 400;
   line-height: 32px;
   color: #fff !important;
@@ -126,42 +132,103 @@ body {
 }
 .error__text {
   font-family: $content-font;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 32px;
   color: #ff1800;
 }
 
-@include desktopToLaptop {
-  html {
-    overflow-x: hidden !important;
-  }
-  body {
-    width: 100vw;
-  }
-  .wrap {
-    position: relative;
-    width: 100vw;
-  }
+@include largeDesktopTodesktop {
+  // html {
+  //   // overflow-x: hidden !important;
+  // }
+  // body {
+  //   width: 100vw;
+  // }
+  // .wrap {
+  //   position: relative;
+  //   width: 100vw;
+  // }
   #header {
     padding: 0 80px;
   }
   #container {
     .visual {
-      padding-left: 180px;
-      padding-right: 180px;
+      padding-left: 80px;
+      padding-right: 80px;
     }
     .content {
-      padding-left: 180px;
-      padding-right: 180px;
+      padding-left: 80px;
+      padding-right: 80px;
     }
   }
   footer {
-    padding: 60px 180px;
+    padding: 60px 80px;
     .footer__content {
       ul {
         gap: 30px;
       }
     }
+  }
+}
+
+@include mobile {
+  .theme--light.v-label,
+  .theme--dark.v-label {
+    font-size: 1rem;
+    line-height: 1.375rem;
+    margin-left: 0 !important;
+  }
+  .v-input--selection-controls__input {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .mdi-checkbox-blank-outline:before {
+    width: 24px;
+    height: 24px;
+    background-size: 12.5px 8px;
+  }
+  .mdi-checkbox-marked:before {
+    width: 24px;
+    height: 24px;
+    background-size: 12.5px 8px;
+  }
+
+  .error__text {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+  .v-tabs-bar {
+    .v-slide-group__wrapper {
+      .v-slide-group__content {
+        .v-tabs-slider-wrapper {
+          height: 2px !important;
+          bottom: -4px !important;
+        }
+      }
+    }
+    .v-tab {
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      + .v-tab {
+        margin-left: 13px;
+      }
+      &.v-tab--active {
+        color: #fff !important;
+      }
+    }
+  }
+
+  .v-text-field--outlined > .v-input__control > .v-input__slot {
+    height: 52px !important;
+    min-height: 52px !important;
+  }
+  .v-text-field input::placeholder {
+    font-family: $content-font !important;
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    letter-spacing: -0.16px !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.6) !important;
   }
 }

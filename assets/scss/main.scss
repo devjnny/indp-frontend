@@ -1,5 +1,6 @@
-@import "./_mixin";
-$content-font: "NanumSquareNeo" sans-serif;
+@import "./breakpoint.scss";
+$content-font: "NanumSquareNeo", sans-serif;
+
 .visual {
   display: flex;
   flex-direction: column;
@@ -17,6 +18,7 @@ $content-font: "NanumSquareNeo" sans-serif;
     line-height: 82px;
   }
   &__description {
+    text-align: center;
     font-family: $content-font;
     font-weight: 400;
     margin-top: 60px;
@@ -117,12 +119,14 @@ $content-font: "NanumSquareNeo" sans-serif;
       .service-steps {
         display: flex;
         justify-content: space-between;
-        gap: 34px;
+        gap: 2.125rem;
         &__step {
           display: flex;
           flex-direction: column;
-          width: 300px;
-          height: 300px;
+          justify-content: flex-start;
+          width: calc((100% - 102px) / 4);
+          max-width: 300px;
+          min-height: 300px;
           padding: 39px 0 45px;
           background-color: #172028;
           border: 1px solid #2e3d4a;
@@ -149,6 +153,7 @@ $content-font: "NanumSquareNeo" sans-serif;
             line-height: 28px;
             color: #fff;
             margin-top: 29px;
+            word-break: break-all;
             .text__blue {
               font-weight: 800;
             }
@@ -224,7 +229,8 @@ $content-font: "NanumSquareNeo" sans-serif;
     .swiper {
       margin: 60px -25px;
       .swiper-slide {
-        width: 304px !important;
+        width: calc((100% - 150px) / 6);
+        max-width: 304px !important;
         height: 446px;
         border-radius: 10px;
         background-color: #fff;
@@ -282,7 +288,7 @@ $content-font: "NanumSquareNeo" sans-serif;
         &.swiper-button-prev {
           justify-content: flex-start;
           padding-left: 24px;
-          left: 298px;
+          left: calc((100% - 150px) / 6);
           &:after {
             background-image: url(/icons/icon_btn_arrow_left.png);
           }
@@ -290,7 +296,7 @@ $content-font: "NanumSquareNeo" sans-serif;
         &.swiper-button-next {
           justify-content: flex-start;
           padding-left: 30px;
-          right: 284px;
+          right: calc((100% - 150px) / 6);
           &:after {
             background-image: url(/icons/icon_btn_arrow_right.png);
           }
@@ -299,24 +305,201 @@ $content-font: "NanumSquareNeo" sans-serif;
     }
   }
 }
-@include desktopToLaptop {
+
+@include largeDesktopTodesktop {
   .content {
     & > div {
-      padding: 0 180px;
+      padding: 0 80px;
     }
     .content__place {
-      background: url(/images/bg_main03.png) no-repeat top left/100% 100%;
-      padding: 150px 180px;
-      width: 100%;
-      position: relative;
-      .swiper {
-        margin: 60px 0;
-        position: unset;
-        .swiper-slide {
-          width: calc((100% - 90px) / 4) !important;
-          .place__info {
-            padding: 30px 24px;
+      //   background: url(/images/bg_main03.png) no-repeat top left/100% 100%;
+      //   padding: 150px 180px;
+      //   width: 100%;
+      //   position: relative;
+      //   .swiper {
+      //     margin: 60px 0;
+      //     position: unset;
+      //     .swiper-slide {
+      //       width: calc((100% - 90px) / 4) !important;
+      .place__info {
+        padding: 18px 24px !important;
+      }
+      //       &.swiper-slide-active {
+      //         opacity: 1;
+      //         + .swiper-slide
+      //           + .swiper-slide
+      //           + .swiper-slide
+      //           + .swiper-slide
+      //           + .swiper-slide {
+      //           opacity: 1;
+      //         }
+      //       }
+      //     }
+      //     div[class^="swiper-button"] {
+      //       &.swiper-button-prev {
+      //         left: 144px;
+      //       }
+      //       &.swiper-button-next {
+      //         right: 144px;
+      //       }
+      //     }
+      //   }
+    }
+  }
+}
+
+@include mobile {
+  .visual {
+    height: 481px;
+    &__text {
+      font-family: $content-font;
+      font-size: 1.625rem;
+      font-weight: 900;
+      line-height: 2.375rem;
+    }
+    &__description {
+      padding: 0 76px;
+      font-family: $content-font;
+      font-weight: 400;
+      margin-top: 24px;
+      color: #fff;
+      font-size: 1rem;
+      line-height: 2rem;
+      strong {
+        font-weight: 800;
+      }
+    }
+    &__scroll {
+      bottom: 32px;
+      font-size: 0.625rem;
+      line-height: 1.125rem;
+      &:after {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+  .content {
+    & > div {
+      padding: 0 26px;
+    }
+    .content__main {
+      padding: 60px 0;
+      &-title {
+        p {
+          font-family: $content-font;
+          font-weight: 400;
+          font-size: 1rem;
+          line-height: 1.5rem;
+          color: #fff;
+          margin-bottom: 4px !important;
+        }
+        strong {
+          font-weight: 900;
+          font-size: 1.625rem;
+          line-height: 2.375rem;
+          color: #2686d9;
+          margin-right: 0;
+        }
+      }
+      &-text {
+        margin-top: 100px;
+        p {
+          font-family: $content-font;
+          &:first-of-type {
+            font-weight: 800;
+            font-size: 36px;
+            line-height: 46px;
+            color: rgba(255, 255, 255, 0.8);
           }
+          &:last-of-type {
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 32px;
+            color: #fff;
+            margin-top: 40px;
+          }
+        }
+      }
+    }
+    .content__main02 {
+      padding: 60px 39px;
+      background: url(/images/bg_mo_main02.png) no-repeat top left/100% 100%;
+      &-title {
+        font-family: $content-font;
+        font-size: 1.625rem;
+        font-weight: 900;
+        line-height: 2.375rem;
+        color: #fff;
+      }
+      &-text {
+        margin-top: 24px;
+        font-family: $content-font;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: #fff;
+        word-break: keep-all;
+      }
+    }
+    .content__service {
+      padding: 60px 20px;
+      &-title {
+        font-family: $content-font;
+        font-size: 1.625rem;
+        font-weight: 900;
+        line-height: 2.375rem;
+        color: #fff;
+      }
+      &-steps {
+        margin-top: 24px;
+        width: 100%;
+        .service-steps {
+          gap: 16px;
+          flex-wrap: wrap;
+          &__step {
+            width: calc((100% - 16px) / 2);
+            min-height: 224px;
+            padding: 20px 12px;
+            background-color: #172028;
+            border: 1px solid #2e3d4a;
+            border-radius: 10px;
+            &-text {
+              font-family: $content-font;
+              font-size: 1rem;
+              line-height: 1.5rem;
+              color: #fff;
+              &:after {
+                width: 40px;
+                height: 40px;
+                margin: 16px auto 0;
+              }
+            }
+            &-content {
+              font-family: $content-font;
+              text-align: center;
+              font-size: 0.875rem;
+              line-height: 1.375rem;
+              color: #fff;
+              margin-top: 16px;
+            }
+          }
+        }
+      }
+    }
+    .content__place {
+      padding: 60px 0;
+      &-title {
+        font-family: $content-font;
+        font-size: 1.625rem;
+        line-height: 2.375rem;
+      }
+      .swiper {
+        margin: 24px 0;
+        .swiper-slide {
+          width: calc((100% - 28px) / 2);
+          max-width: 162px !important;
+          height: 280px;
+          border-radius: 12px;
           &.swiper-slide-active {
             opacity: 1;
             + .swiper-slide
@@ -327,13 +510,21 @@ $content-font: "NanumSquareNeo" sans-serif;
               opacity: 1;
             }
           }
-        }
-        div[class^="swiper-button"] {
-          &.swiper-button-prev {
-            left: 144px;
+          img {
+            display: block;
+            width: 100%;
+            height: 160px;
           }
-          &.swiper-button-next {
-            right: 144px;
+          .place__info {
+            padding: 12px 12px 16px;
+            .place__name {
+              font-size: 1rem;
+            }
+            .place__address {
+              font-family: $content-font;
+              font-size: 0.75rem;
+              margin-top: 4px;
+            }
           }
         }
       }

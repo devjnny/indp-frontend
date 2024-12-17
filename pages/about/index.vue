@@ -3,8 +3,11 @@
     <div class="visual">
       <p>안녕하세요, 버비입니다.</p>
       <h3 class="visual__text">
-        버비는 음악이라는 마법을 통해 <br />세상을 더 아름답게 만들고자 하는
-        <br />비전을 가지고 설립되었습니다.
+        버비는 음악이라는 마법을 통해 <br />세상을 더 아름답게
+        <br v-show="$store.getters.isMobile" />만들고자 하는
+        <br v-show="!$store.getters.isMobile" />비전을 가지고
+        <br v-show="$store.getters.isMobile" />
+        설립되었습니다.
       </h3>
       <p>
         <strong>음악</strong>으로 <strong>희망, 위로, 감동</strong>을 전하며,

@@ -74,11 +74,12 @@
         </p>
         <Button
           text="문의 등록"
+          :type="!$store.getters.isMobile || 'w-full'"
           @doAction="validCheck"
           :disabled="!activeFormBtn"
         ></Button>
       </div>
-      <div class="logo__floating">
+      <div class="logo__floating" v-show="!$store.getters.isMobile">
         <span class="hidden">VERBY</span>
       </div>
       <Alert

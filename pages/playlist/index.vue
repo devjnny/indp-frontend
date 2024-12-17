@@ -6,7 +6,7 @@
         <strong>음악</strong>이 나오고 있을까?
       </h3>
 
-      <div class="place-list__tab">
+      <div class="place-list__tab" v-if="tabItems">
         <v-tabs
           v-model="tab"
           height="auto"
@@ -25,7 +25,13 @@
         <v-window v-model="tab">
           <v-window-item v-for="n in tabItems.length" :key="n">
             <ul class="place-list">
-              <li class="place" v-for="store in stores" :key="store.id">
+              <li
+                class="place"
+                v-for="store in stores"
+                :role="!$store.getters.isMobile || '매장 상세보기'"
+                :key="store.id"
+                @click="openStoreDetail(store)"
+              >
                 <img :src="store.imageUrl" :alt="store.name" />
                 <div class="place__tag">
                   <span v-for="theme in store.themes">#{{ theme }}</span>
@@ -35,7 +41,10 @@
                     <span class="place__info-text__name">{{ store.name }}</span>
                     <p class="place__info-text__address">{{ store.address }}</p>
                   </div>
-                  <div class="place__info-playlist">
+                  <div
+                    class="place__info-playlist"
+                    v-show="!$store.getters.isMobile"
+                  >
                     <p class="place__info-playlist-genre">
                       <strong class="text__blue">곡 구성 : </strong>
                       <span v-for="songForm in store.songForms">{{
@@ -53,7 +62,7 @@
           </v-window-item>
         </v-window>
       </div>
-      <div class="service__request">
+      <div class="service__request" v-show="!$store.getters.isMobile">
         <p>우리 매장도 <strong>인디피 서비스</strong>를 이용하고 싶어요!</p>
         <Button
           text="이용 문의하기"
@@ -62,7 +71,14 @@
         ></Button>
       </div>
 
-      <v-dialog dark v-model="dialog" max-width="1000px">
+      <!-- pc: 음악 추천 form 팝업 -->
+      <v-dialog
+        dark
+        v-model="recommendMusicDialog"
+        max-width="1000px"
+        content-class="recommend-popup"
+        v-if="!$store.getters.isMobile"
+      >
         <v-card>
           <v-card-title class="d-flex justify-space-between">
             <span>음악 추천하기</span>
@@ -70,7 +86,7 @@
               icon
               @click="
                 () => {
-                  dialog = false;
+                  recommendMusicDialog = false;
                 }
               "
             >
@@ -146,6 +162,149 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+
+      <!-- mo: 음악 추천 form 팝업 -->
+      <v-bottom-sheet
+        v-model="recommendMusicDialog"
+        content-class="recommend-popup"
+        dark
+        v-else
+      >
+        <v-card class="text-center">
+          <v-card-title class="d-flex justify-space-between">
+            <span>음악 추천하기</span>
+            <v-btn
+              icon
+              @click="
+                () => {
+                  recommendMusicDialog = false;
+                }
+              "
+            >
+              <v-icon color="white" small aria-label="닫기" role="img"
+                >mdi-close</v-icon
+              >
+            </v-btn>
+          </v-card-title>
+          <v-card-text>
+            <v-form ref="form">
+              <span class="label">추천 음악 정보 *</span>
+              <v-text-field
+                v-model="form.musicInfo"
+                maxlength="50"
+                height="60"
+                :hide-details="true"
+                placeholder="매장에 어울리는 음악의 가수와 제목"
+                outlined
+                required
+              ></v-text-field>
+              <span class="label">추천인 연락처 *</span>
+              <v-text-field
+                :value="form.phone"
+                type="text"
+                maxlength="50"
+                height="60"
+                :hide-details="true"
+                :hide-spin-buttons="true"
+                placeholder="음악을 추천해 주시는 분의 연락처"
+                outlined
+                required
+                ref="phoneRef"
+                @input="bindInputPhone"
+                @keyup.delete="bindDeletePhone"
+              ></v-text-field>
+              <v-checkbox
+                v-model="form.checkbox"
+                :label="'개인 정보 수집 및 이용 동의'"
+                :hide-details="true"
+                :ripple="false"
+              ></v-checkbox>
+              <div class="clause">
+                <p>
+                  음악 추천하기 기능과 관련하여 아래와 같이 귀하의 개인정보를
+                  수집 및 이용 내용을 개인정보보호법 제 15조(개인정보의
+                  수집·이용) 및 통계법 33조(비밀의 보호 등)에 의거하여
+                  안내드리니 확인하여 주시기 바랍니다.
+                </p>
+                <ul>
+                  <li>
+                    - 개인정보의 수집·이용 목적 : 음악 추천 신청과 연락을 위한
+                    연락처 수집
+                  </li>
+                  <li>- 수집하려는 개인정보의 필수 항목 : 연락처</li>
+                  <li>
+                    - 개인정보의 보유 및 이용 기간 : 서비스 신청에 대한 절차
+                    이후 폐기
+                  </li>
+                </ul>
+              </div>
+            </v-form>
+          </v-card-text>
+          <v-card-actions class="d-flex flex-column justify-center">
+            <p
+              class="error__text"
+              v-show="!form.isFirstValidCheck && showErrorText"
+            >
+              필수 항목(*) 중 입력되지 않은 영역이 있습니다.
+            </p>
+            <Button
+              text="전송"
+              type="w-full"
+              @doAction="validCheck"
+              :disabled="!activeFormBtn"
+            ></Button>
+          </v-card-actions>
+        </v-card>
+      </v-bottom-sheet>
+
+      <!-- mo: 매장 상세 팝업 -->
+      <v-dialog v-model="storeDetailDialog" content-class="store-detail-popup">
+        <v-card v-if="storeDetail">
+          <v-btn
+            icon
+            @click="
+              () => {
+                storeDetailDialog = false;
+              }
+            "
+          >
+            <v-icon color="white" small aria-label="닫기" role="img"
+              >mdi-close</v-icon
+            >
+          </v-btn>
+          <div class="store-detail-content">
+            <img :src="storeDetail.imageUrl" :alt="storeDetail.name" />
+            <div class="place__tag">
+              <span v-for="theme in storeDetail.themes">#{{ theme }}</span>
+            </div>
+            <div class="place__info">
+              <div class="place__info-text">
+                <span class="place__info-text__name">{{
+                  storeDetail.name
+                }}</span>
+                <p class="place__info-text__address">
+                  {{ storeDetail.address }}
+                </p>
+              </div>
+              <div class="place__info-playlist">
+                <p class="place__info-playlist-genre">
+                  <strong class="text__blue">곡 구성</strong><br />
+                  <span v-for="songForm in storeDetail.songForms">{{
+                    songForm
+                  }}</span>
+                </p>
+                <Button
+                  text="음악 추천하기"
+                  type="w-full"
+                  @doAction="openRecommendPopup(storeDetail.id)"
+                ></Button>
+              </div>
+            </div>
+          </div>
+        </v-card>
+      </v-dialog>
+
+      <!-- 음악 추천 완료 alert -->
       <Alert
         title="음악 추천 성공"
         content="소중한 선곡 감사합니다.<br/>
@@ -169,6 +328,8 @@ export default {
       tabItems: ["전체", "서울", "경기"],
       selectedRegion: "전체",
       stores: [],
+      storeDetailDialog: false,
+      storeDetail: null,
       isFirst: true,
       paging: {
         page: 0,
@@ -184,7 +345,7 @@ export default {
         alert: false,
         filledAll: false,
       },
-      dialog: false,
+      recommendMusicDialog: false,
       showErrorText: false,
     };
   },
@@ -192,7 +353,7 @@ export default {
     Button,
   },
   watch: {
-    dialog: {
+    recommendMusicDialog: {
       //음악추천 팝업 닫히면 form 리셋
       handler(value, oldValue) {
         !value && this.resetForm();
@@ -212,9 +373,19 @@ export default {
     },
   },
   mounted() {
+    // this.getStoreRegion();
     this.drawStoreList();
   },
   methods: {
+    openStoreDetail(store) {
+      //mobile: 매장 상세 팝업
+      if (!this.$store.getters.isMobile) {
+        //pc인 경우 매장 상세 팝업 비노출
+        return;
+      }
+      this.storeDetailDialog = true;
+      this.storeDetail = store;
+    },
     bindInputPhone(value) {
       //연락처필드 숫자 제외 입력 방지
       const latestInputWord = value[value.length - 1];
@@ -245,15 +416,28 @@ export default {
     },
     async getStoreList() {
       const url =
+        // this.selectedRegion === this.tabItems[0] //"전체"
+        //   ? `https://api.verby.co.kr/api/stores?page=${this.paging.page}&size=10`
+        //   : `https://api.verby.co.kr/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
         this.selectedRegion === this.tabItems[0] //"전체"
-          ? `https://api.verby.co.kr/api/stores?page=${this.paging.page}&size=10`
-          : `https://api.verby.co.kr/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
+          ? `/api/stores?page=${this.paging.page}&size=10`
+          : `/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
       const { data } = await this.$axios.get(url).catch(function (error) {
         alert(error.message);
       });
       this.paging.hasNext = data.pageInfo.hasNext;
       return data.stores;
     },
+    // async getStoreRegion() {
+    //   const url = "https://api.verby.co.kr/api/regions";
+    //   const { data } = await this.$axios.get(url).catch(function (error) {
+    //     alert(error.message);
+    //   });
+
+    //   if (data) {
+    //     this.tabItems = ["전체", ...data];
+    //   }
+    // },
     async drawStoreList() {
       if (this.isFirst) {
         this.stores = await this.getStoreList();
@@ -271,7 +455,11 @@ export default {
       }
     },
     openRecommendPopup(storeId) {
-      this.dialog = true;
+      if (this.$store.getters.isMobile) {
+        //모바일일 때 매장 상세 팝업 닫고 추천 팝업 open
+        this.storeDetailDialog = false;
+      }
+      this.recommendMusicDialog = true;
       this.selectedStoreId = storeId;
     },
     validCheck() {
@@ -308,7 +496,7 @@ export default {
       this.form.phone = "";
       this.form.checkbox = false;
       this.showErrorText = false;
-      this.dialog = false;
+      this.recommendMusicDialog = false;
     },
   },
 };

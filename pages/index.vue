@@ -199,7 +199,6 @@ export default {
   },
   mounted() {
     this.drawStoreList();
-    console.log(this.$config.apiUrl);
   },
   methods: {
     copySwiperItem() {
@@ -218,7 +217,9 @@ export default {
     },
     async getStoreList() {
       const { data } = await this.$axios
-        .get(`/api/main/stores?page=${this.paging.page}&size=10`)
+        .get(
+          `${this.$config.apiUrl}/api/main/stores?page=${this.paging.page}&size=10`
+        )
         .catch(function (error) {
           alert(error.message);
         });

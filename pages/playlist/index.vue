@@ -329,7 +329,7 @@ export default {
   data() {
     return {
       tab: 0,
-      tabItems: ["전체"],
+      tabItems: ["전체", "서울", "경기"],
       selectedRegion: "전체",
       stores: [],
       storeDetailDialog: false,
@@ -377,7 +377,7 @@ export default {
     },
   },
   mounted() {
-    this.getStoreRegion();
+    // this.getStoreRegion();
     this.drawStoreList();
   },
   methods: {
@@ -429,16 +429,16 @@ export default {
       this.paging.hasNext = data.pageInfo.hasNext;
       return data.stores;
     },
-    async getStoreRegion() {
-      const url = `${this.$config.apiUrl}/api/regions`;
-      const { data } = await this.$axios.get(url).catch(function (error) {
-        alert(error.message);
-      });
+    // async getStoreRegion() {
+    //   const url = `${this.$config.apiUrl}/api/regions`;
+    //   const { data } = await this.$axios.get(url).catch(function (error) {
+    //     alert(error.message);
+    //   });
 
-      if (data && data.res) {
-        this.tabItems = ["전체", ...data.res];
-      }
-    },
+    //   if (data && data.res) {
+    //     this.tabItems = ["전체", ...data.res];
+    //   }
+    // },
     async drawStoreList() {
       if (this.isFirst) {
         this.stores = await this.getStoreList();

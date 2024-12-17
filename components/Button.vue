@@ -39,7 +39,7 @@ export default {
 button {
   width: 340px;
   height: 60px;
-  padding: 15px 52px;
+  // padding: 15px 52px;
   background-color: #216097;
   border-radius: 30px;
   span {
@@ -47,12 +47,13 @@ button {
     position: relative;
     color: #fff;
     font-family: "NanumSquareNeo", sans-serif;
-    font-size: 22px;
-    line-height: 32px;
+    font-size: 1.375rem;
+    line-height: 2rem;
     font-weight: 800;
   }
   &.arrow {
     width: auto;
+    padding: 0 32px;
     span {
       padding-right: 19px;
       &:after {
@@ -77,7 +78,7 @@ button {
   }
 }
 
-@include mobile {
+@include mobile-tablet {
   button {
     width: 200px;
     height: 52px;

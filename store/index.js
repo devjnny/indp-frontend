@@ -10,7 +10,7 @@ export const mutations = {
 
 export const actions = {
   updateIsMobile({ commit }) {
-    commit("setIsMobile", window.innerWidth <= 768);
+    commit("setIsMobile", window.innerWidth <= 1024);
   },
 };
 

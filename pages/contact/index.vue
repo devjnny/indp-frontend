@@ -177,7 +177,7 @@ export default {
         phoneNumber: this.form.phone,
       };
       const response = await this.$axios
-        .post("https://api.verby.co.kr/api/contacts", payload)
+        .post(`${this.$config.apiUrl}/api/contacts`, payload)
         .catch(function (error) {
           alert(error.message);
         });

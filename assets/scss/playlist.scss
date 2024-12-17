@@ -14,9 +14,9 @@ $content-font: "NanumSquareNeo", sans-serif;
   background-position: left top, right bottom;
   h3 {
     font-family: $content-font;
-    font-size: 58px;
+    font-size: 3.625rem;
     font-weight: 400;
-    line-height: 74px;
+    line-height: 4.625rem;
     color: #fff;
     text-align: center;
     strong {
@@ -40,9 +40,9 @@ $content-font: "NanumSquareNeo", sans-serif;
     margin-top: 100px;
     p {
       font-family: $content-font;
-      font-size: 48px;
+      font-size: 3rem;
       font-weight: 400;
-      line-height: 64px;
+      line-height: 4rem;
       color: #fff;
       strong {
         font-weight: 900;
@@ -74,9 +74,9 @@ $content-font: "NanumSquareNeo", sans-serif;
       border-radius: 20.5px;
       background-color: rgba(255, 255, 255, 0.7);
       font-family: $content-font;
-      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 800;
-      line-height: 40px;
+      line-height: 2.5rem;
       text-align: center;
       + span {
         margin-left: 6px;
@@ -104,12 +104,12 @@ $content-font: "NanumSquareNeo", sans-serif;
       flex-direction: column;
       align-items: center;
       &__name {
-        font-size: 26px;
+        font-size: 1.625rem;
         font-weight: 800;
       }
       &__address {
         margin-top: 16px;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 400;
         overflow: hidden;
         text-align: center;
@@ -128,9 +128,9 @@ $content-font: "NanumSquareNeo", sans-serif;
       text-align: center;
       margin-top: 26px;
       &-genre {
-        font-size: 21px;
+        font-size: 1.313rem;
         font-weight: 800;
-        line-height: 29px;
+        line-height: 1.813rem;
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -163,7 +163,7 @@ $content-font: "NanumSquareNeo", sans-serif;
   .v-card {
     .v-card__title {
       font-family: $content-font;
-      font-size: 32px;
+      font-size: 2rem;
       font-weight: 800;
       padding: 64px;
     }
@@ -176,9 +176,9 @@ $content-font: "NanumSquareNeo", sans-serif;
         }
         .label {
           display: inline-block;
-          font-size: 18px;
+          font-size: 1.125rem;
           font-weight: 800;
-          line-height: 32px;
+          line-height: 2rem;
           color: #fff;
           margin-bottom: 20px;
         }
@@ -191,7 +191,7 @@ $content-font: "NanumSquareNeo", sans-serif;
           margin-top: 60px;
         }
         .clause {
-          font-size: 18px;
+          font-size: 1.125rem;
           font-weight: 400;
           color: rgba(255, 255, 255, 0.7);
           margin-top: 20px;
@@ -235,13 +235,16 @@ $content-font: "NanumSquareNeo", sans-serif;
         }
       }
     }
-    .service__request p {
-      font-size: 38px;
+    .service__request {
+      gap: 20px;
+      p {
+        font-size: 2rem;
+      }
     }
   }
 }
 
-@include mobile {
+@include mobile-tablet {
   .content {
     h3 {
       font-size: 1.625rem;
@@ -262,12 +265,27 @@ $content-font: "NanumSquareNeo", sans-serif;
     }
   }
   .place {
+    position: relative;
     width: calc((100% - 15px) / 2);
-    height: auto;
+    min-height: 256px;
+    background-color: #f0f0f0;
     border-radius: 12px;
-    img {
-      height: auto;
+    overflow: hidden;
+    &__img-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      overflow: hidden; /* 이미지 넘치는 부분 잘리게 처리 */
+      img {
+        position: absolute; /* 부모 기준으로 배치 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
+
     &__tag {
       left: 12px;
       top: 12px;
@@ -385,14 +403,14 @@ $content-font: "NanumSquareNeo", sans-serif;
       height: 32px;
       border-radius: 50%;
       background-color: rgba(0, 0, 0, 0.1);
+      z-index: 10;
     }
     .store-detail-content {
       width: 100% !important;
-      img {
-        width: 100% !important;
-        height: auto;
-      }
       .place {
+        &__img-wrpper {
+          padding-top: 62.5%;
+        }
         &__tag {
           left: 16px;
           top: 16px;

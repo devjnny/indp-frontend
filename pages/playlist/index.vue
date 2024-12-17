@@ -1,4 +1,4 @@
-<template>
+<template v-if="tabItems">
   <v-app>
     <div class="content">
       <h3>
@@ -32,7 +32,9 @@
                 :key="store.id"
                 @click="openStoreDetail(store)"
               >
-                <img :src="store.imageUrl" :alt="store.name" />
+                <div class="place__img-wrapper">
+                  <img :src="store.imageUrl" :alt="store.name" />
+                </div>
                 <div class="place__tag">
                   <span v-for="theme in store.themes">#{{ theme }}</span>
                 </div>
@@ -273,7 +275,9 @@
             >
           </v-btn>
           <div class="store-detail-content">
-            <img :src="storeDetail.imageUrl" :alt="storeDetail.name" />
+            <div class="place__img-wrapper">
+              <img :src="storeDetail.imageUrl" :alt="storeDetail.name" />
+            </div>
             <div class="place__tag">
               <span v-for="theme in storeDetail.themes">#{{ theme }}</span>
             </div>
@@ -325,7 +329,7 @@ export default {
   data() {
     return {
       tab: 0,
-      tabItems: ["전체", "서울", "경기"],
+      tabItems: ["전체"],
       selectedRegion: "전체",
       stores: [],
       storeDetailDialog: false,
@@ -373,7 +377,7 @@ export default {
     },
   },
   mounted() {
-    // this.getStoreRegion();
+    this.getStoreRegion();
     this.drawStoreList();
   },
   methods: {
@@ -416,28 +420,25 @@ export default {
     },
     async getStoreList() {
       const url =
-        // this.selectedRegion === this.tabItems[0] //"전체"
-        //   ? `https://api.verby.co.kr/api/stores?page=${this.paging.page}&size=10`
-        //   : `https://api.verby.co.kr/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
         this.selectedRegion === this.tabItems[0] //"전체"
-          ? `/api/stores?page=${this.paging.page}&size=10`
-          : `/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
+          ? `${this.$config.apiUrl}/api/stores?page=${this.paging.page}&size=10`
+          : `${this.$config.apiUrl}/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
       const { data } = await this.$axios.get(url).catch(function (error) {
         alert(error.message);
       });
       this.paging.hasNext = data.pageInfo.hasNext;
       return data.stores;
     },
-    // async getStoreRegion() {
-    //   const url = "https://api.verby.co.kr/api/regions";
-    //   const { data } = await this.$axios.get(url).catch(function (error) {
-    //     alert(error.message);
-    //   });
+    async getStoreRegion() {
+      const url = `${this.$config.apiUrl}/api/regions`;
+      const { data } = await this.$axios.get(url).catch(function (error) {
+        alert(error.message);
+      });
 
-    //   if (data) {
-    //     this.tabItems = ["전체", ...data];
-    //   }
-    // },
+      if (data && data.res) {
+        this.tabItems = ["전체", ...data.res];
+      }
+    },
     async drawStoreList() {
       if (this.isFirst) {
         this.stores = await this.getStoreList();
@@ -483,7 +484,7 @@ export default {
         phoneNumber: this.form.phone,
       };
       const response = await this.$axios.post(
-        "https://api.verby.co.kr/api/music/recommendations",
+        `${this.$config.apiUrl}/api/music/recommendations`,
         payload
       );
       if (response.status === 201) {

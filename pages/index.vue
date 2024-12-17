@@ -158,7 +158,7 @@ export default {
         },
         centeredSlides: true,
         breakpoints: {
-          769: {
+          1025: {
             spaceBetween: 30,
             centeredSlides: false,
           },
@@ -199,6 +199,7 @@ export default {
   },
   mounted() {
     this.drawStoreList();
+    console.log(this.$config.apiUrl);
   },
   methods: {
     copySwiperItem() {

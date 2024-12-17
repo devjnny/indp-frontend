@@ -19,14 +19,14 @@ $content-font: "NanumSquareNeo", sans-serif;
       color: #fff;
       text-align: center;
       h3 {
-        font-size: 58px;
+        font-size: 3.625rem;
         font-weight: 900;
-        line-height: 74px;
+        line-height: 4.625rem;
       }
       p {
-        font-size: 22px;
+        font-size: 1.375rem;
         font-weight: 400;
-        line-height: 32px;
+        line-height: 2rem;
         margin-top: 40px;
       }
     }
@@ -38,9 +38,9 @@ $content-font: "NanumSquareNeo", sans-serif;
       }
       .contact__label {
         display: inline-block;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 800;
-        line-height: 32px;
+        line-height: 2rem;
         color: #fff;
         margin-bottom: 20px;
       }
@@ -56,7 +56,7 @@ $content-font: "NanumSquareNeo", sans-serif;
         }
       }
       .contact__clause {
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 400;
         color: rgba(255, 255, 255, 0.7);
         margin-top: 20px;
@@ -81,9 +81,9 @@ $content-font: "NanumSquareNeo", sans-serif;
   }
 }
 
-@include mobile {
+@include mobile-tablet {
   .content {
-    padding: 80px 20px 60px !important;
+    // padding: 80px 20px 60px !important;
 
     &.contact {
       .contact__title {

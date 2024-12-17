@@ -53,7 +53,7 @@
         </button>
         <div
           class="nav-mobile__side-menu-wrapper"
-          :class="{ show: showSideMenu }"
+          :class="{ open: openSideMenu }"
         >
           <ul class="nav-mobile__side-menu">
             <li @click="() => handleSideMenu(false)">
@@ -142,7 +142,7 @@ export default {
   data() {
     return {
       gnbHoverState: false,
-      showSideMenu: false,
+      openSideMenu: false,
     };
   },
   mounted() {
@@ -158,7 +158,7 @@ export default {
       this.$store.dispatch("updateIsMobile");
     },
     handleSideMenu(isOpen) {
-      this.showSideMenu = isOpen;
+      this.openSideMenu = isOpen;
     },
   },
 };

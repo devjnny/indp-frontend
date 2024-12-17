@@ -12,11 +12,11 @@ $content-font: "NanumSquareNeo", sans-serif;
   background: url(/images/bg_about.png) no-repeat top left/100% 100%;
   .visual__text {
     font-family: $content-font;
-    font-size: 58px;
+    font-size: 3.625rem;
     color: #fff;
     font-weight: 900;
     text-align: center;
-    line-height: 72px;
+    line-height: 4.5rem;
     margin-top: 40px;
     + p {
       margin-top: 60px;
@@ -26,8 +26,8 @@ $content-font: "NanumSquareNeo", sans-serif;
     font-family: $content-font;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 22px;
-    line-height: 32px;
+    font-size: 1.375rem;
+    line-height: 2rem;
     text-align: center;
     strong {
       font-weight: 800;
@@ -45,9 +45,9 @@ $content-font: "NanumSquareNeo", sans-serif;
   .content__title {
     span {
       display: inline-block;
-      font-size: 54px;
+      font-size: 3.375rem;
       font-weight: 700;
-      line-height: 64px;
+      line-height: 4rem;
       color: #fff;
       + span {
         position: relative;
@@ -71,31 +71,34 @@ $content-font: "NanumSquareNeo", sans-serif;
     margin-top: 60px;
     .content__logo-img {
       position: relative;
-      width: 100%;
-      height: 318px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+      width: 100%; /* 부모 컨테이너의 너비에 맞추기 */
+      height: calc(100vw * 0.2038); /* 너비에 비례한 높이 */
+      padding: 0 24%;
       border: 1px solid #333;
       border-radius: 10px;
       img {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 88px;
-        margin: auto;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
       }
     }
     .content__logo-info {
       margin: 60px 0;
       font-family: $content-font;
       .content__logo-info-title {
-        font-size: 28px;
+        font-size: 1.75rem;
         font-weight: 800;
-        line-height: 58px;
+        line-height: 3.625rem;
         color: #fff;
       }
       .content__logo-info-text {
-        font-size: 22px;
+        font-size: 1.375rem;
         font-weight: 400;
-        line-height: 32px;
+        line-height: 2rem;
         color: rgba(255, 255, 255, 0.6);
         margin-top: 30px;
       }
@@ -103,14 +106,16 @@ $content-font: "NanumSquareNeo", sans-serif;
         display: flex;
         justify-content: space-between;
         margin-top: 60px;
+        gap: 45px;
         .content__logo-info-img-box {
-          width: 410px;
-          height: 628px;
+          position: relative;
+          width: calc((100% - 90px) / 3);
           border-radius: 10px;
           overflow: hidden;
           img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            object-fit: cover;
           }
         }
       }
@@ -118,15 +123,15 @@ $content-font: "NanumSquareNeo", sans-serif;
   }
   .content__logo-style {
     .content__logo-style-title {
-      font-size: 28px;
+      font-size: 1.75rem;
       font-weight: 700;
-      line-height: 48px;
+      line-height: 3rem;
       color: #fff;
     }
     .content__logo-style-text {
-      font-size: 22px;
+      font-size: 1.375;
       font-weight: 400;
-      line-height: 32px;
+      line-height: 2rem;
       color: rgba(255, 255, 255, 0.7);
       margin-top: 30px;
     }
@@ -136,6 +141,7 @@ $content-font: "NanumSquareNeo", sans-serif;
       gap: 40px;
       margin-top: 60px;
       .content__logo-type {
+        width: calc((100% - 40px) / 2);
         &:nth-child(n + 3) {
           margin-top: 58px;
         }
@@ -143,9 +149,15 @@ $content-font: "NanumSquareNeo", sans-serif;
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 630px;
-          height: 150px;
+          overflow: hidden;
+          width: 100%;
+          aspect-ratio: 630 / 150;
           border-radius: 30px;
+          img {
+            width: calc(100% - 102.5px);
+            height: auto;
+            object-fit: cover;
+          }
           &.content__logo-type-box--white {
             background-color: #fff;
           }
@@ -161,15 +173,15 @@ $content-font: "NanumSquareNeo", sans-serif;
         margin-top: 30px;
         .content__logo-type-color {
           font-family: $content-font;
-          font-size: 26px;
+          font-size: 1.625rem;
           font-weight: 800;
-          line-height: 37px;
+          line-height: 2.313rem;
           color: #fff;
         }
         .content__logo-type-style {
-          font-size: 18px;
+          font-size: 1.125rem;
           font-weight: 500;
-          line-height: 27px;
+          line-height: 1.688rem;
           color: rgba(255, 255, 255, 0.7);
           margin-top: 20px;
         }
@@ -202,9 +214,9 @@ $content-font: "NanumSquareNeo", sans-serif;
   }
 }
 
-@include mobile {
+@include mobile-tablet {
   .visual {
-    height: 472px;
+    height: 532px;
     padding: 80px 24px 60px !important;
     .visual__text {
       font-size: 1.625rem;
@@ -225,7 +237,8 @@ $content-font: "NanumSquareNeo", sans-serif;
     }
   }
   .content {
-    padding: 60px 20px !important;
+    padding-top: 60px !important;
+    // padding: 60px 20px !important;
     .content__title {
       span {
         display: inline-block;
@@ -247,16 +260,8 @@ $content-font: "NanumSquareNeo", sans-serif;
       margin-top: 20px;
       .content__logo-img {
         position: relative;
-        width: 100%;
-        height: 120px;
         border: 1px solid #333;
         border-radius: 4px;
-        padding: 38px 62px 10px;
-        img {
-          width: calc(100% - 124px);
-          height: auto;
-          top: 38px;
-        }
       }
       .content__logo-info {
         margin: 32px 0;
@@ -273,14 +278,9 @@ $content-font: "NanumSquareNeo", sans-serif;
         }
         .content__logo-info-img {
           margin-top: 32px;
+          gap: 20px;
           .content__logo-info-img-box {
-            width: 101px;
-            height: 150px;
-            border-radius: 0;
-            img {
-              width: 100%;
-              height: 100%;
-            }
+            width: calc((100% - 40px) / 2);
           }
         }
       }
@@ -310,11 +310,10 @@ $content-font: "NanumSquareNeo", sans-serif;
           }
           .content__logo-type-box {
             width: 100%;
-            height: 72px;
+            aspect-ratio: 160 / 72;
             border-radius: 4px;
-            padding: 27px 30px;
             img {
-              width: 100%;
+              width: calc(100% - 60px);
               height: auto;
             }
           }

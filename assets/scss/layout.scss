@@ -36,9 +36,9 @@ $content-font: "NanumSquareNeo", sans-serif;
     // margin-left: 430px;
     li {
       a {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 800;
-        line-height: 40px;
+        line-height: 2.5rem;
         color: rgba(255, 255, 255, 0.3);
         &.nuxt-link-exact-active {
           color: #fff;
@@ -82,12 +82,12 @@ footer {
   }
   .footer__content {
     font-family: $content-font;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 300;
     margin-top: 42px;
     color: rgba(255, 255, 255, 0.8);
     .footer__title {
-      font-size: 20px;
+      font-size: 1.25rem;
       font-weight: 600;
     }
     ul {
@@ -113,7 +113,7 @@ footer {
 }
 
 //mobile menu
-@include mobile {
+@include mobile-tablet {
   #header {
     height: 60px;
     padding: 0 28px 0 20px;
@@ -132,26 +132,27 @@ footer {
         background: url(/icons/icon_menu.png) no-repeat center/100%;
       }
       &__side-menu-wrapper {
-        display: none;
-        &.show {
-          display: block;
-        }
-      }
-      &__side-menu {
         position: absolute;
         right: 0;
         top: 0;
+        transform: translateX(100%); /* 메뉴를 화면 밖으로 이동 */
+        transition: transform 0.3s ease-in-out; /* 부드러운 애니메이션 */
         padding: 68px 28px 20px;
-        width: calc(100% - 79px);
+        width: calc(100vw - 79px);
         height: 100vh;
         border: 1px solid #fff;
         background-color: #222224;
+        &.open {
+          transform: translateX(0);
+        }
+      }
+      &__side-menu {
         li {
           padding: 12px 0;
           a {
             font-size: 1.125rem;
             font-weight: 700;
-            line-height: 26px;
+            line-height: 1.625rem;
             color: #fff;
           }
           + li {
@@ -186,6 +187,7 @@ footer {
     bottom: 0;
     left: 0;
     padding: 40px 20px;
+    z-index: 9;
     .logo {
       width: 103px;
       height: 16px;
@@ -229,6 +231,13 @@ footer {
           }
         }
       }
+    }
+  }
+
+  //335px 이하 footer 깨짐
+  @media (max-width: 335px) {
+    .footer__content {
+      font-size: 0.75rem !important;
     }
   }
 }

@@ -6,7 +6,11 @@
       </v-card-title>
       <v-card-text v-html="content"></v-card-text>
       <v-card-actions>
-        <Button text="확인" @doAction="$emit('doAction')"></Button>
+        <Button
+          text="확인"
+          @doAction="$emit('doAction')"
+          :type="!$store.getters.isMobile || 'w-full'"
+        ></Button>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -46,15 +50,15 @@ export default {
 .v-card {
   font-family: "NanumSquareNeo", sans-serif;
   .v-card__title {
-    font-size: 22px;
-    line-height: 32px;
+    font-size: 1.375rem;
+    line-height: 2rem;
     font-weight: 800;
     justify-content: center;
     padding: 24px;
   }
   .v-card__text {
-    font-size: 16px;
-    line-height: 32px;
+    font-size: 1rem;
+    line-height: 2rem;
     color: rgba(255, 255, 255, 0.8);
     text-align: center;
     padding: 0 24px;

@@ -11,11 +11,11 @@ $content-font: "NanumSquareNeo", sans-serif;
   height: 950px;
   background: url(/images/bg_main01.png) no-repeat top left/100% 100%;
   &__text {
-    font-size: 68px;
+    font-size: 4.25rem;
     color: #fff;
     font-weight: 800;
     text-align: center;
-    line-height: 82px;
+    line-height: 5.125rem;
   }
   &__description {
     text-align: center;
@@ -23,8 +23,8 @@ $content-font: "NanumSquareNeo", sans-serif;
     font-weight: 400;
     margin-top: 60px;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 22px;
-    line-height: 32px;
+    font-size: 1.375rem;
+    line-height: 2rem;
     strong {
       font-weight: 800;
     }
@@ -37,7 +37,7 @@ $content-font: "NanumSquareNeo", sans-serif;
     text-align: center;
     font-family: $content-font;
     font-weight: 400;
-    line-height: 32px;
+    line-height: 2rem;
     color: #fff;
     &:after {
       content: "";
@@ -64,21 +64,21 @@ $content-font: "NanumSquareNeo", sans-serif;
     background-size: cover;
     &-title {
       font-weight: 800;
-      font-size: 54px;
-      line-height: 32px;
+      font-size: 3.375rem;
+      line-height: 2rem;
       color: rgba(255, 255, 255, 0.7);
       p {
         font-family: $content-font;
         font-weight: 400;
-        font-size: 22px;
-        line-height: 32px;
+        font-size: 1.375rem;
+        line-height: 2rem;
         color: rgba(255, 255, 255, 0.8);
         margin-bottom: 20px !important;
       }
       strong {
         font-weight: 800;
-        font-size: 70px;
-        line-height: 32px;
+        font-size: 4.375rem;
+        line-height: 2rem;
         color: #2686d9;
         margin-right: 15px;
       }
@@ -89,14 +89,14 @@ $content-font: "NanumSquareNeo", sans-serif;
         font-family: $content-font;
         &:first-of-type {
           font-weight: 800;
-          font-size: 36px;
-          line-height: 46px;
+          font-size: 2.25rem;
+          line-height: 2.875rem;
           color: rgba(255, 255, 255, 0.8);
         }
         &:last-of-type {
           font-weight: 400;
-          font-size: 22px;
-          line-height: 32px;
+          font-size: 1.375rem;
+          line-height: 2rem;
           color: #fff;
           margin-top: 40px;
         }
@@ -109,9 +109,9 @@ $content-font: "NanumSquareNeo", sans-serif;
     background-color: #09121b;
     &-title {
       font-family: $content-font;
-      font-size: 42px;
+      font-size: 2.625rem;
       font-weight: 900;
-      line-height: 54px;
+      line-height: 3.375rem;
       color: #fff;
     }
     &-steps {
@@ -133,8 +133,8 @@ $content-font: "NanumSquareNeo", sans-serif;
           border-radius: 10px;
           &-text {
             font-family: $content-font;
-            font-size: 24px;
-            line-height: 28px;
+            font-size: 1.5rem;
+            line-height: 1.75rem;
             font-weight: 900;
             color: #fff;
             &:after {
@@ -148,9 +148,9 @@ $content-font: "NanumSquareNeo", sans-serif;
             }
           }
           &-content {
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 400;
-            line-height: 28px;
+            line-height: 1.75rem;
             color: #fff;
             margin-top: 29px;
             word-break: break-all;
@@ -183,7 +183,7 @@ $content-font: "NanumSquareNeo", sans-serif;
           position: relative;
           padding-left: 34px;
           font-family: $content-font;
-          font-size: 18px;
+          font-size: 1.125rem;
           line-height: 32px;
           font-weight: 400;
           color: #fff;
@@ -221,9 +221,9 @@ $content-font: "NanumSquareNeo", sans-serif;
     overflow: hidden;
     &-title {
       font-family: $content-font;
-      font-size: 40px;
+      font-size: 2.5rem;
       font-weight: 900;
-      line-height: 52px;
+      line-height: 3.25rem;
       color: #fff;
     }
     .swiper {
@@ -258,13 +258,13 @@ $content-font: "NanumSquareNeo", sans-serif;
           padding: 30px 36px;
           .place__name {
             font-family: $content-font;
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 800;
             color: #000;
           }
           .place__address {
             font-family: $content-font;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 400;
             color: #000;
             overflow: hidden;
@@ -323,6 +323,9 @@ $content-font: "NanumSquareNeo", sans-serif;
       //       width: calc((100% - 90px) / 4) !important;
       .place__info {
         padding: 18px 24px !important;
+        .place__name {
+          font-size: 1rem !important;
+        }
       }
       //       &.swiper-slide-active {
       //         opacity: 1;
@@ -348,9 +351,9 @@ $content-font: "NanumSquareNeo", sans-serif;
   }
 }
 
-@include mobile {
+@include mobile-tablet {
   .visual {
-    height: 481px;
+    height: 541px;
     &__text {
       font-family: $content-font;
       font-size: 1.625rem;
@@ -456,8 +459,10 @@ $content-font: "NanumSquareNeo", sans-serif;
         .service-steps {
           gap: 16px;
           flex-wrap: wrap;
+          justify-content: center;
           &__step {
             width: calc((100% - 16px) / 2);
+            max-width: none;
             min-height: 224px;
             padding: 20px 12px;
             background-color: #172028;
@@ -487,7 +492,7 @@ $content-font: "NanumSquareNeo", sans-serif;
       }
     }
     .content__place {
-      padding: 60px 0;
+      padding: 60px 0 330px;
       &-title {
         font-family: $content-font;
         font-size: 1.625rem;

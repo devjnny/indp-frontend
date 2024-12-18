@@ -132,9 +132,10 @@ footer {
         background: url(/icons/icon_menu.png) no-repeat center/100%;
       }
       &__side-menu-wrapper {
-        position: absolute;
+        position: fixed;
         right: 0;
         top: 0;
+        bottom: 0;
         transform: translateX(100%); /* 메뉴를 화면 밖으로 이동 */
         transition: transform 0.3s ease-in-out; /* 부드러운 애니메이션 */
         padding: 68px 28px 20px;

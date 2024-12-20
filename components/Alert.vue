@@ -9,7 +9,7 @@
         <Button
           text="확인"
           @doAction="$emit('doAction')"
-          :type="!$store.getters.isMobile || 'w-full'"
+          :type="$store.getters.isMobile ? 'w-full' : ''"
         ></Button>
       </v-card-actions>
     </v-card>

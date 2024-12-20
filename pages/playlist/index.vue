@@ -43,11 +43,11 @@
                     <span class="place__info-text__name">{{ store.name }}</span>
                     <p class="place__info-text__address">{{ store.address }}</p>
                   </div>
-                  <div
-                    class="place__info-playlist"
-                    v-show="!$store.getters.isMobile"
-                  >
-                    <p class="place__info-playlist-genre">
+                  <div class="place__info-playlist">
+                    <p
+                      class="place__info-playlist-genre"
+                      v-if="!$store.getters.isMobile"
+                    >
                       <strong class="text__blue">곡 구성 : </strong>
                       <span v-for="songForm in store.songForms">{{
                         songForm
@@ -55,6 +55,8 @@
                     </p>
                     <Button
                       text="음악 추천하기"
+                      :type="$store.getters.isMobile ? 'w-full' : ''"
+                      :doStopPropagation="true"
                       @doAction="openRecommendPopup(store.id)"
                     ></Button>
                   </div>
@@ -329,7 +331,7 @@ export default {
   data() {
     return {
       tab: 0,
-      tabItems: ["전체", "서울", "경기"],
+      tabItems: ["전체"],
       selectedRegion: "전체",
       stores: [],
       storeDetailDialog: false,
@@ -377,7 +379,7 @@ export default {
     },
   },
   mounted() {
-    // this.getStoreRegion();
+    this.getStoreRegion();
     this.drawStoreList();
   },
   methods: {
@@ -421,24 +423,24 @@ export default {
     async getStoreList() {
       const url =
         this.selectedRegion === this.tabItems[0] //"전체"
-          ? `${this.$config.apiUrl}/api/stores?page=${this.paging.page}&size=10`
-          : `${this.$config.apiUrl}/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
+          ? `/api/stores?page=${this.paging.page}&size=10`
+          : `/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
       const { data } = await this.$axios.get(url).catch(function (error) {
         alert(error.message);
       });
       this.paging.hasNext = data.pageInfo.hasNext;
       return data.stores;
     },
-    // async getStoreRegion() {
-    //   const url = `${this.$config.apiUrl}/api/regions`;
-    //   const { data } = await this.$axios.get(url).catch(function (error) {
-    //     alert(error.message);
-    //   });
+    async getStoreRegion() {
+      const url = `/api/regions`;
+      const { data } = await this.$axios.get(url).catch(function (error) {
+        alert(error.message);
+      });
 
-    //   if (data && data.res) {
-    //     this.tabItems = ["전체", ...data.res];
-    //   }
-    // },
+      if (data) {
+        this.tabItems = ["전체", ...data.regions];
+      }
+    },
     async drawStoreList() {
       if (this.isFirst) {
         this.stores = await this.getStoreList();

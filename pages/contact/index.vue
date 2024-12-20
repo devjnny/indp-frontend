@@ -14,6 +14,7 @@
           dark
           no-resize
           outlined
+          color="#2e3d4a"
           :hide-details="true"
         ></v-textarea>
         <span class="contact__label">문의자(본인) 성함 *</span>
@@ -74,13 +75,10 @@
         </p>
         <Button
           text="문의 등록"
-          :type="!$store.getters.isMobile || 'w-full'"
+          :type="$store.getters.isMobile ? 'w-full' : ''"
           @doAction="validCheck"
           :disabled="!activeFormBtn"
         ></Button>
-      </div>
-      <div class="logo__floating" v-show="!$store.getters.isMobile">
-        <span class="hidden">VERBY</span>
       </div>
       <Alert
         title="문의 등록 성공"

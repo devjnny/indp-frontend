@@ -323,6 +323,38 @@ $content-font: "NanumSquareNeo", sans-serif;
           line-height: 1.25rem;
         }
       }
+      &-playlist {
+        height: auto;
+        margin-top: 8px;
+        &-genre {
+          font-size: 1.313rem;
+          font-weight: 800;
+          line-height: 1.813rem;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          .text__blue {
+            font-weight: 900;
+          }
+          span {
+            display: inline-block;
+            position: relative;
+            + span {
+              padding-left: 8px;
+              &:before {
+                content: ",";
+                display: block;
+                position: absolute;
+                left: 0;
+              }
+            }
+          }
+        }
+        button {
+          margin-top: 0;
+        }
+      }
     }
   }
 

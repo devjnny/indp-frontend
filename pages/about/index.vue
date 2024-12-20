@@ -55,7 +55,8 @@
         </p>
         <p class="content__logo-style-text">
           버비는 팬톤 컬러의 클래식 블루와 블랙을 활용하며, <br />Day sans black
-          폰트의 Regular 사이즈를 사 용합니다.
+          폰트의 Regular 사이즈를
+          <br v-show="$store.getters.isMobile" />사용합니다.
         </p>
         <div class="content__logo-style-list">
           <div class="content__logo-type">

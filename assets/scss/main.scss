@@ -379,6 +379,7 @@ $content-font: "NanumSquareNeo", sans-serif;
       &:after {
         width: 12px;
         height: 12px;
+        background-image: url(/icons/icon_mo_scroll.png);
       }
     }
   }
@@ -389,8 +390,8 @@ $content-font: "NanumSquareNeo", sans-serif;
     .content__main {
       padding: 60px 0;
       &-title {
+        font-family: $content-font;
         p {
-          font-family: $content-font;
           font-weight: 400;
           font-size: 1rem;
           line-height: 1.5rem;
@@ -490,6 +491,37 @@ $content-font: "NanumSquareNeo", sans-serif;
           }
         }
       }
+      button {
+        margin-top: 32px;
+      }
+      .service__contact {
+        margin-top: 16px;
+        .contact-details {
+          gap: 16px;
+          dd {
+            padding-left: 22px;
+            font-size: 0.75rem;
+            line-height: 1.25rem;
+            font-weight: 700;
+            color: #6f7378;
+            &:before {
+              width: 18px;
+            }
+            &.contact-details__phone {
+              &:before {
+                height: 18px;
+                background-image: url(/icons/icon_mo_phone.png);
+              }
+            }
+            &.contact-details__mail {
+              &:before {
+                height: 18px;
+                background-image: url(/icons/icon_mo_email.png);
+              }
+            }
+          }
+        }
+      }
     }
     .content__place {
       padding: 60px 0;
@@ -532,6 +564,20 @@ $content-font: "NanumSquareNeo", sans-serif;
             }
           }
         }
+      }
+    }
+  }
+}
+
+//342px 이하 footer 깨짐
+@media (max-width: 341px) {
+  .service__contact {
+    .contact-details {
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 8px !important;
+      dd {
+        display: flex !important;
       }
     }
   }

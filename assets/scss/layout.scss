@@ -3,7 +3,8 @@ $content-font: "NanumSquareNeo", sans-serif;
 .wrap {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
+  overflow-y: auto;
 }
 
 #header {
@@ -19,6 +20,15 @@ $content-font: "NanumSquareNeo", sans-serif;
   padding: 0 309px;
   z-index: 100;
   &.on {
+    background-color: #0f4c82;
+  }
+  &.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+  }
+  &.scrolled.on {
     background-color: #0f4c82;
   }
   .logo {
@@ -51,14 +61,14 @@ $content-font: "NanumSquareNeo", sans-serif;
 #container {
   width: 100%;
   position: relative;
-  .logo__floating {
-    position: absolute;
-    right: 30px;
-    bottom: 30px;
-    width: 70px;
-    height: 70px;
-    background: url(/images/logo_floating.png) no-repeat center/100%;
-  }
+  // .logo__floating {
+  //   position: absolute;
+  //   right: 30px;
+  //   bottom: 30px;
+  //   width: 70px;
+  //   height: 70px;
+  //   background: url(/images/logo_floating.png) no-repeat center/100%;
+  // }
   .visual {
     padding-left: 309px;
     padding-right: 309px;
@@ -107,6 +117,9 @@ footer {
         + li {
           margin-top: 6px;
         }
+        .footer__copyright {
+          margin-top: 16px;
+        }
       }
     }
   }
@@ -141,7 +154,7 @@ footer {
         padding: 68px 28px 20px;
         width: calc(100vw - 79px);
         height: 100dvh;
-        border: 1px solid #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         background-color: #222224;
         &.open {
           transform: translateX(0);
@@ -176,7 +189,6 @@ footer {
   }
 
   #container {
-    height: calc(100% - 276px);
     .visual {
       padding: 0;
     }

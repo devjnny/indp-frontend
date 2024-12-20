@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[arrow ? 'arrow' : '', disabled ? 'disabled' : '', type]"
-    @click="$emit('doAction')"
+    @click="handleAction"
   >
     <span>{{ text }}</span>
   </button>
@@ -29,6 +29,19 @@ export default {
     doAction: {
       type: Function,
       default: () => {},
+    },
+    doStopPropagation: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    handleAction(event) {
+      if (this.doStopPropagation) {
+        //이벤트 전파 방지
+        event.stopPropagation();
+      }
+      this.$emit("doAction");
     },
   },
 };

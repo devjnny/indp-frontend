@@ -64,7 +64,7 @@
             <li class="service-steps__step">
               <strong class="service-steps__step-text">STEP 2</strong>
               <p class="service-steps__step-content">
-                매장 방문을 위한 <br /><span class="text__blue">스케쥴</span>을
+                매장 방문을 위한 <br /><span class="text__blue">스케줄</span>을
                 조율합니다.
               </p>
             </li>
@@ -88,7 +88,7 @@
             </li>
           </ul>
         </div>
-        <div v-if="!$store.getters.isMobile">
+        <div>
           <Button
             text="문의하기"
             arrow

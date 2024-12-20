@@ -1,6 +1,12 @@
 <template>
-  <div class="wrap">
-    <header id="header" :class="gnbHoverState ? 'on' : ''">
+  <div class="wrap" ref="scrollContainer">
+    <header
+      id="header"
+      :class="{
+        scrolled: isScrolled,
+        on: gnbHoverState && !$store.getters.isMobile,
+      }"
+    >
       <h1 class="logo">
         <NuxtLink
           to="/"
@@ -26,7 +32,7 @@
               to="/playlist"
               @mouseover.native="gnbHoverState = true"
               @mouseleave.native="gnbHoverState = false"
-              >PLAYLIST</NuxtLink
+              >PARTNERS</NuxtLink
             >
           </li>
           <li>
@@ -123,10 +129,10 @@
               <p class="footer__text">verbykorea@gmail.com</p>
             </div>
           </li>
-          <li v-if="$store.getters.isMobile">
+          <li>
             <div>
               <span class="footer__copyright"
-                >Copyright 2024.VERBY Co.all rights reserved.</span
+                >Copyright 2024.VERBY Co. all rights reserved.</span
               >
             </div>
           </li>
@@ -143,19 +149,32 @@ export default {
     return {
       gnbHoverState: false,
       openSideMenu: false,
+      isScrolled: false,
+      scrollContainer: null,
     };
   },
   mounted() {
+    this.scrollContainer = this.$refs.scrollContainer;
+    // 스크롤 이벤트 리스너 추가
+    if (this.scrollContainer) {
+      this.scrollContainer.addEventListener("scroll", this.handleScroll);
+    }
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
   },
   beforeDestroy() {
+    if (this.scrollContainer) {
+      this.crollContainer.removeEventListener("scroll", this.handleScroll);
+    }
     window.removeEventListener("resize", this.handleResize);
   },
   methods: {
     handleResize() {
       // 모바일 사이즈 체크
       this.$store.dispatch("updateIsMobile");
+    },
+    handleScroll() {
+      this.isScrolled = this.scrollContainer.scrollTop > 0;
     },
     handleSideMenu(isOpen) {
       this.openSideMenu = isOpen;

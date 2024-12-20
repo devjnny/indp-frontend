@@ -440,8 +440,8 @@ export default {
     async getStoreList() {
       const url =
         this.selectedRegion === this.tabItems[0] //"전체"
-          ? `/api/stores?page=${this.paging.page}&size=10`
-          : `/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
+          ? `${this.$config.apiUrl}/api/stores?page=${this.paging.page}&size=10`
+          : `${this.$config.apiUrl}/api/stores?page=${this.paging.page}&size=10&region=${this.selectedRegion}`;
       const { data } = await this.$axios.get(url).catch(function (error) {
         alert(error.message);
       });
@@ -449,7 +449,7 @@ export default {
       return data.stores;
     },
     async getStoreRegion() {
-      const url = `/api/regions`;
+      const url = `${this.$config.apiUrl}/api/regions`;
       const { data } = await this.$axios.get(url).catch(function (error) {
         alert(error.message);
       });

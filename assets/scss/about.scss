@@ -76,8 +76,8 @@ $content-font: "NanumSquareNeo", sans-serif;
       justify-content: end;
       align-items: center;
       width: 100%; /* 부모 컨테이너의 너비에 맞추기 */
-      height: calc(100vw * 0.2038); /* 너비에 비례한 높이 */
-      padding: 0 24%;
+      height: calc(100vw * 0.32); /* 너비에 비례한 높이 */
+      padding: 0 18%;
       border: 1px solid #333;
       border-radius: 10px;
       img {

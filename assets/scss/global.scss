@@ -244,4 +244,29 @@ body {
     font-weight: 400 !important;
     color: rgba(255, 255, 255, 0.6) !important;
   }
+
+  .v-dialog:not(.v-dialog--fullscreen) {
+    position: relative;
+    max-height: 100% !important;
+    height: 100%;
+    .v-card {
+      height: 100%;
+      .v-card__title {
+        height: 72px;
+      }
+      .v-card__text {
+        padding-bottom: 140px;
+        height: calc(100% - 72px - 112px);
+        overflow: auto;
+      }
+      .v-card__actions {
+        width: 100%;
+        position: fixed;
+        background: #1e1e1e;
+        bottom: 0;
+        left: 0;
+        height: 112px;
+      }
+    }
+  }
 }

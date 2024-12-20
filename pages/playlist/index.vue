@@ -27,7 +27,7 @@
             <ul class="place-list">
               <li
                 class="place"
-                v-for="store in stores"
+                v-for="store in formattedStores"
                 :role="!$store.getters.isMobile || '매장 상세보기'"
                 :key="store.id"
                 @click="openStoreDetail(store)"
@@ -41,7 +41,9 @@
                 <div class="place__info">
                   <div class="place__info-text">
                     <span class="place__info-text__name">{{ store.name }}</span>
-                    <p class="place__info-text__address">{{ store.address }}</p>
+                    <p class="place__info-text__address">
+                      {{ store.address }}
+                    </p>
                   </div>
                   <div class="place__info-playlist">
                     <p
@@ -55,6 +57,7 @@
                     </p>
                     <Button
                       text="음악 추천하기"
+                      size="small"
                       :type="$store.getters.isMobile ? 'w-full' : ''"
                       :doStopPropagation="true"
                       @doAction="openRecommendPopup(store.id)"
@@ -375,6 +378,20 @@ export default {
         return true;
       } else {
         return false;
+      }
+    },
+    formattedStores() {
+      if (this.$store.getters.isMobile) {
+        return this.stores.map((store) => {
+          const regex = /(.*?구)/; // '구'로 끝나는 문자열 추출
+          const match = store.address.match(regex);
+          return {
+            ...store,
+            address: match ? match[0] : store.address,
+          };
+        });
+      } else {
+        return this.stores;
       }
     },
   },

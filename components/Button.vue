@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="[arrow ? 'arrow' : '', disabled ? 'disabled' : '', type]"
+    :class="[arrow ? 'arrow' : '', disabled ? 'disabled' : '', type, size]"
     @click="handleAction"
   >
     <span>{{ text }}</span>
@@ -15,6 +15,10 @@ export default {
       default: "",
     },
     type: {
+      type: String,
+      default: "",
+    },
+    size: {
       type: String,
       default: "",
     },
@@ -101,6 +105,15 @@ button {
     span {
       font-size: 1rem;
       line-height: 1.5rem;
+    }
+    &.small {
+      height: 32px;
+      padding: 0;
+      span {
+        font-size: 0.75rem !important;
+        line-height: 1.25rem !important;
+        font-weight: 800;
+      }
     }
     &.arrow {
       width: auto;

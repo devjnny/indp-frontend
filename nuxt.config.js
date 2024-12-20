@@ -72,4 +72,20 @@ export default {
       },
     },
   },
+  router: {
+    scrollBehavior(to, from, savedPosition) {
+      // 스크롤 컨테이너
+      const wrapElement = document.querySelector(".wrap");
+
+      if (savedPosition) {
+        return savedPosition;
+      }
+
+      if (wrapElement) {
+        wrapElement.scrollTo(0, 0);
+      }
+
+      return { x: 0, y: 0 };
+    },
+  },
 };

@@ -32,6 +32,7 @@ $content-font: "NanumSquareNeo", sans-serif;
       gap: 35px;
       flex-wrap: wrap;
       margin-top: 55px;
+      justify-content: center;
     }
   }
   .service__request {
@@ -53,7 +54,8 @@ $content-font: "NanumSquareNeo", sans-serif;
 
 .place {
   position: relative;
-  width: 410px;
+  width: calc((100% - 60px) / 3);
+  max-width: 410px;
   height: auto;
   border-radius: 10px;
   overflow: hidden;

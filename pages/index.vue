@@ -12,7 +12,7 @@
       <p class="visual__description" v-else>
         매일 똑같은 음악, 지겨우시죠? <br />아침마다 음악 고르기, 힘드시죠?
         <br />
-        <strong>매장분위기</strong>와 <strong>영업시간</strong>에 맞게
+        <strong>매장분위기</strong>와 <strong>영업시간</strong>에 맞게 <br />
         <strong>플레이리스트 설정</strong>해 드릴게요!
       </p>
       <a href="#main" class="visual__scroll">SCROLL</a>

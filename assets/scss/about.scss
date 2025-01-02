@@ -73,7 +73,7 @@ $content-font: "NanumSquareNeo", sans-serif;
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: end;
+      justify-content: center;
       align-items: center;
       width: 100%; /* 부모 컨테이너의 너비에 맞추기 */
       height: calc(100vw * 0.32); /* 너비에 비례한 높이 */
@@ -84,6 +84,7 @@ $content-font: "NanumSquareNeo", sans-serif;
         width: 100%;
         height: auto;
         object-fit: contain;
+        margin-top: 28px;
       }
     }
     .content__logo-info {

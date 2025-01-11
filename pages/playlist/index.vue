@@ -42,7 +42,11 @@
                   <div class="place__info-text">
                     <span class="place__info-text__name">{{ store.name }}</span>
                     <p class="place__info-text__address">
-                      {{ store.address }}
+                      {{
+                        $store.getters.isMobile
+                          ? store.formattedAddress
+                          : store.address
+                      }}
                     </p>
                   </div>
                   <div class="place__info-playlist">
@@ -387,7 +391,8 @@ export default {
           const match = store.address.match(regex);
           return {
             ...store,
-            address: match ? match[0] : store.address,
+            formattedAddress: match ? match[0] : store.address,
+            address: store.address,
           };
         });
       } else {
